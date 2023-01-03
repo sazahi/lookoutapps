@@ -3,7 +3,8 @@ package id.kotlin.recyclerview.Api
 data class TodoItem (
     val id: String,
     val username: String,
-    val description: String? = null,
+    val description: String,
     val done_at: String? = null,
-    val created_at: String
+    val created_at: String,
+    val Session_id: String
 )

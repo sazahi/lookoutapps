@@ -1,5 +1,6 @@
 package id.kotlin.recyclerview
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,8 +15,19 @@ class splash : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
 
+        val sharedPreference =  getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+
+        var session_id = sharedPreference.getString("session_id", "").toString()
+
         Handler().postDelayed({
-            startActivity(Intent(this, start::class.java))
+            if (session_id.isEmpty()) {
+                startActivity(Intent(this, FirstActivity::class.java))
+            }
+            else {
+                startActivity(Intent(this, start::class.java))
+            }
             finish()
         }, 3000)
     }

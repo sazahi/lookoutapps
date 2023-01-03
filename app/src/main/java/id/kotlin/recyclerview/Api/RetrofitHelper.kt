@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
 
-    val baseUrl = "https://aaawtjlqbjvorrgweali.supabase.co"
+    val baseUrl = "https://jlssvretpbzsnnbfpijd.supabase.co"
 
     fun getInstance(): Retrofit {
         return Retrofit.Builder().baseUrl(baseUrl)
