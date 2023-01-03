@@ -20,7 +20,7 @@ class FeedActivity : AppCompatActivity() {
     lateinit var adapter : Adapter
 
 
-    val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impsc3N2cmV0cGJ6c25uYmZwaWpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA1ODMwMDUsImV4cCI6MTk4NjE1OTAwNX0.XzG93lsdOa4ap-NMu1cgquhdmywh1924-WnuM9f3fXs"
+    val apiKey = ""
     val token = "Bearer $apiKey"
 
     val Items = ArrayList<DataViewModel>()
