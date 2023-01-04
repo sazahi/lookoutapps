@@ -7,9 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
-import id.kotlin.recyclerview.Api.RetrofitHelper
-import id.kotlin.recyclerview.Api.TodoApi
+import com.example.sharedpref.api.RetrofitHelper
+import com.example.sharedpref.api.TodoApi
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,12 +23,12 @@ class detail : AppCompatActivity() {
 
     val todoApi = RetrofitHelper.getInstance().create(TodoApi::class.java)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         supportActionBar?.hide()
-
 
         val sharedPreferences = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
@@ -43,28 +44,23 @@ class detail : AppCompatActivity() {
         username.text = aUsername
         description.text = aDescription
 
-        fun deleteItem(id: String) {
-            CoroutineScope(Dispatchers.Main).launch {
-                todoApi.delete(token=token, apiKey=apiKey, idQuery=id)
 
-
-            }
-        }
 
         delete.setOnClickListener(){
-                var queryId = "eq.$id"
-                deleteItem(queryId)
+            if (ssid.equals(session_id)) {
+                var query = "eq.$id"
+                CoroutineScope(Dispatchers.Main).launch {
+                    todoApi.delete(token = token , apiKey = apiKey , idQuery = query)
+                    Toast.makeText(applicationContext, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(applicationContext, FeedActivity::class.java)
+                    startActivity(intent)
 
-                Toast.makeText(
-                    applicationContext,
-                    "Delete Post ",
-                    Toast.LENGTH_SHORT
-                ).show()
+                }
 
-                val intent = Intent(this, FeedActivity::class.java)
-                startActivity(intent)
+            }else {
+                Toast.makeText(this, "Tidak Bisa Menghapus Postingan Orang Lain", Toast.LENGTH_SHORT).show()
+            }
 
         }
-
-    }
-}
+            }
+        }
