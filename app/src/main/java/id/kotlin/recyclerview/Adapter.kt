@@ -49,14 +49,14 @@ class Adapter(private val mList: List<DataViewModel>) : RecyclerView.Adapter<Ada
         var gusername :String = dataModel.Username
         var gdescription : String = dataModel.Description
         var gdID : String = dataModel.Id
-//        var gdSSID : String = dataModel.Session_id
+       var gdSSID : String = dataModel.Session_id
 
         holder.itemView.setOnClickListener { v ->
             val intent = Intent(v.context, detail::class.java)
             intent.putExtra("iUsername", gusername)
             intent.putExtra("iDescription", gdescription)
             intent.putExtra("ID", gdID)
-//            intent.putExtra("iSSID", gdSSID)
+           intent.putExtra("iSSID", gdSSID)
             v.context.startActivity(intent)
 
         }
