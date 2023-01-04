@@ -68,7 +68,7 @@ class FeedActivity : AppCompatActivity() {
                         Username = it.username,
                         Description = it.description,
                         Created_at = it.created_at,
-//                            Session_id = it.session_id,
+                           Session_id = it.session_id,
                     )
                 )
             }
